@@ -39,3 +39,41 @@
 
 # debug information files
 *.dwo
+
+# directories
+build/
+bin/
+log/
+tmp/
+
+# --- IDE specific ---
+# Visual Studio
+*.vcxproj*
+*.sln
+.vs/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# CLion / JetBrains
+.idea/
+*.iml
+
+# Xcode
+*.xcworkspace
+*.xcuserdatad
+*.xcodeproj/project.xcworkspace/
+
+# CMake cache
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Editor temp files
+*~
+*.swp
+# testing / profiling
+*.gcda
+*.gcno
+*.prof
