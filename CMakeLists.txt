@@ -11,11 +11,25 @@ file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/
 # Add main separately
 set(MAIN_SOURCE ${PROJECT_SOURCE_DIR}/main.cpp)
 
+# Add SDL3 as a dependency
+add_subdirectory(${PROJECT_SOURCE_DIR}/external/SDL)
+
+
 # Add executables for both release and debug configurations
 add_executable(${PROJECT_NAME} ${MAIN_SOURCE} ${SOURCES})
 
+if(WIN32)
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        LINK_FLAGS "/SUBSYSTEM:CONSOLE"
+    )
+endif()
+
+# linking SDL3
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
+
 # Include directories
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/external/*/include)
 
 # Output directories
 set_target_properties(${PROJECT_NAME} PROPERTIES

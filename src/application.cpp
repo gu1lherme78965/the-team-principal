@@ -1,29 +1,30 @@
 #include "application.hpp"
+#include "logger.hpp"
 
 #include <iostream>
 
 Application::Application() {
-    std::cout << "Application created" << std::endl;
+    Logger::info("Application created");
 }
 
 Application::~Application() {
-    std::cout << "Application destroyed" << std::endl;
+    Logger::info("Application destroyed");
 }
 
 int Application::initialize() {
-    std::cout << "Initializing The Team Principal " << _version << std::endl;
+    Logger::info("Initializing The Team Principal " + _version);
     _running = true;
     return 0;
 }
 
 void Application::shutdown() {
-    std::cout << "Shutting down The Team Principal " << _version << std::endl;
+    Logger::info("Shutting down The Team Principal " + _version);
     _running = false;
     return;
 }
 
 void Application::run() {
-    std::cout << "Running The Team Principal " << _version << std::endl;
+    Logger::info("Running The Team Principal " + _version);
     while (_running) {
         // main loop
     }
