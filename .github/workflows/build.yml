@@ -29,7 +29,8 @@ jobs:
             libx11-dev libxext-dev libxrandr-dev libxrender-dev \
             libxinerama-dev libxcursor-dev libxi-dev libgl1-mesa-dev \
             libwayland-dev libwayland-client0 libwayland-cursor0 \
-            libasound2-dev libpulse-dev libudev-dev libdbus-1-dev
+            libasound2-dev libpulse-dev libudev-dev libdbus-1-dev \
+            libxss-dev
 
       - name: Setup Cmake
         uses: jwlawson/actions-setup-cmake@v2
