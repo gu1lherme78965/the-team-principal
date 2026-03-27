@@ -1,0 +1,64 @@
+name: Buil The Team Principal
+
+on:
+  push:
+    branches: [ dev, main ]
+  pull_request: 
+    branches: [ dev, main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        config: [ Debug, Release ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Cmake
+        uses: lukka/get-cmake@v4
+        with:
+          cmake-version: "3.25.0"
+
+      - name: Configure CMake
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.config }}
+
+      - name: Build project
+        run: cmake --build build --config ${{ matrix.config }}
+
+      - name: Verify and Upload binary
+        run: |
+          # Determine expected binary path
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            EXT=".exe"
+          else
+            EXT=""
+          fi
+
+          # Determine binary path based on build type
+          if [ "${{ matrix.config }}" == "Debug" ]; then
+            BIN_PATH="bin/debug/TheTeamPrincipal${EXT}"
+          else
+            BIN_PATH="bin/release/TheTeamPrincipal${EXT}"
+          fi
+
+          # Verify the binary exists
+          if [ ! -f "$BIN_PATH" ]; then
+            echo "Build failed: $BIN_PATH not found"
+            exit 1
+          fi
+          echo "Build succeeded: $BIN_PATH"
+
+          # Upload the binary artifact
+          echo "Uploading $BIN_PATH..."
+          echo "$BIN_PATH > binary_path.txt
+        shell: bash
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.config }}-${{ matrix.os }}
+          path: binary_path.txt
