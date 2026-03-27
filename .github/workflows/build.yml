@@ -54,7 +54,7 @@ jobs:
 
           # Upload the binary artifact
           echo "Uploading $BIN_PATH..."
-          echo "$BIN_PATH > binary_path.txt
+          echo "$BIN_PATH > binary_path.txt"
         shell: bash
 
       - name: Upload artifact
