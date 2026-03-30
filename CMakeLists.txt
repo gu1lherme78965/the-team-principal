@@ -43,6 +43,13 @@ $<$<CONFIG:Release>:NDEBUG>
 $<$<CONFIG:Debug>:DEBUG>
 )
 
+# Copy SDL3 DLLs to the output directory after build
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    $<TARGET_FILE:SDL3::SDL3>
+    $<TARGET_FILE_DIR:${PROJECT_NAME}>
+)
+
 # Compiler options
 if(MSVC)
     # MSVC-specific flags

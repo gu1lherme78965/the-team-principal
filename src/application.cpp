@@ -14,19 +14,29 @@ Application::~Application() {
 int Application::initialize() {
     Logger::info("Initializing The Team Principal " + _version);
     _running = true;
-    return 0;
+    if (_window.initialize() != 0) {
+        Logger::error("Failed to initialize window");
+        return -1;
+    }
+    return 0;   
 }
 
 void Application::shutdown() {
-    Logger::info("Shutting down The Team Principal " + _version);
     _running = false;
+    _window.shutdown();
+    Logger::info("Shutting down The Team Principal " + _version);
     return;
 }
 
 void Application::run() {
     Logger::info("Running The Team Principal " + _version);
     while (_running) {
-        // main loop
+        SDL_Delay(16); // Simulate ~60 FPS
+        _input.update();
+        if (_input.isKeyDown(SDLK_ESCAPE)) {
+            Logger::info("Escape key pressed, exiting application");
+            _running = false;
+        }
     }
     return;
 }

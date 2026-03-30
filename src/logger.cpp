@@ -44,7 +44,7 @@ void Logger::error(const std::string& message) {
 void Logger::initialize() {
     std::lock_guard<std::mutex> lock(_mutex);
     _logFile.open("../log/application.log", std::ios::trunc);
-    if(_logFile.is_open()) {
+    if(!_logFile.is_open()) {
         std::cout << "Failed to open log file" << std::endl;
     }
 }
