@@ -31,7 +31,7 @@ jobs:
             libwayland-dev libwayland-client0 libwayland-cursor0 \
             libasound2-dev libpulse-dev libudev-dev libdbus-1-dev \
             libxss-dev
-          sudo dnf install gcc git-core make cmake \
+          sudo apt-get install gcc git-core make cmake \
             alsa-lib-devel fribidi-devel pulseaudio-libs-devel pipewire-devel \
             libX11-devel libXext-devel libXrandr-devel libXcursor-devel libXfixes-devel \
             libXi-devel libXScrnSaver-devel libXtst-devel dbus-devel ibus-devel \
