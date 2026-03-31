@@ -36,7 +36,7 @@ jobs:
             libxss-dev libxtst-dev libdbus-1-dev libibus-1.0-dev systemd-dev \
             libgl1-mesa-dev libxkbcommon-dev libgles-dev libegl-dev libvulkan-dev \
             libwayland-dev wayland-protocols libdrm-dev libgbm-dev libusb-1.0-0-dev \
-            libdecor-0-dev libpipewire-jack-dev libthai-dev
+            libdecor-0-dev libpipewire-jackDev libthaiDev
 
       - name: Setup Cmake
         uses: jwlawson/actions-setup-cmake@v2
